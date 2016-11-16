@@ -37,21 +37,25 @@ export default class FeedItem extends React.Component {
     if (clickEvent.button === 0) {
       // Callback function for both the like and unlike cases.
       var callbackFunction = (updatedLikeCounter) => {
-      // setState will overwrite the 'likeCounter'
-      // field on the current state, and will keep
-      // the other fields in-tact. This is called a
-      // shallow merge:
-      // https://facebook.github.io/react/docs/component-api.html#setstate
-      this.setState({likeCounter: updatedLikeCounter});
+        // setState will overwrite the 'likeCounter'
+        // field on the current state, and will keep
+        // the other fields in-tact. This is called a
+        // shallow merge:
+        // https://facebook.github.io/react/docs/component-api.html#setstate
+        this.setState({likeCounter: updatedLikeCounter});
       };
       if (this.didUserLike()) {
-      // User clicked 'unlike' button.
-      unlikeFeedItem(this.state._id, 4, callbackFunction);
+        // User clicked 'unlike' button.
+        unlikeFeedItem(this.state._id, 4, callbackFunction);
       } else {
-      // User clicked 'like' button.
-      likeFeedItem(this.state._id, 4, callbackFunction);
+        // User clicked 'like' button.
+        likeFeedItem(this.state._id, 4, callbackFunction);
       }
     }
+  }
+
+  getFeedItemId(){
+    return this.state._id;
   }
 
   /**
@@ -138,7 +142,7 @@ export default class FeedItem extends React.Component {
         <div className="panel-footer">
           <div className="row">
             <div className="col-md-12">
-              <a href="#"> {data.likeCounter.length} people </a>
+              <a href="#"> {this.state.likeCounter.length} people </a>
                 like this
             </div>
           </div>
@@ -149,7 +153,9 @@ export default class FeedItem extends React.Component {
               return (
                 <Comment key={i}
                           author={comment.author}
-                          postDate={comment.postDate}>
+                          postDate={comment.postDate}
+                          likeCounter={comment.likeCounter}
+                          commentId={i}>
                     {comment.contents}
                 </Comment>
               );

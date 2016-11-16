@@ -15,7 +15,7 @@ export default class StatusUpdate extends React.Component {
               <div className="media-body">
                 <Link to={"/profile/" + this.props.author._id}>
                   {this.props.author.fullName}
-                </Link>}
+                </Link>
                 <br /> {unixTimeToString(this.props.postDate)} · {this.props.location}·
                   <span className="glyphicon glyphicon-user"></span>
               </div>
