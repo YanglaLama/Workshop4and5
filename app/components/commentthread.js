@@ -9,11 +9,11 @@ export default class CommentThread extends React.Component {
           return (
             <li className="media">
               {child}
-              </li>
+            </li>
           )
         })}
         <li className="media">
-          <CommentEntry />
+          <CommentEntry onPost={this.props.onPost} />
         </li>
       </ul>
     )
